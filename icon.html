@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generator</title>
+    <!-- FontAwesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #00bfff, #001f3f); 
+            color: #fff;
+            animation: backgroundAnimation 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background: linear-gradient(135deg, #00bfff, #001f3f); }
+            100% { background: linear-gradient(135deg, #004080, #007acc); }
+        }
+
+        .icon-generator-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            color: #001f3f;
+            width: 350px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h2 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: #001f3f;
+            animation: textGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 8px #00bfff, 0 0 20px #00bfff; }
+            100% { text-shadow: 0 0 20px #00bfff, 0 0 40px #00bfff; }
+        }
+
+        .icon-input {
+            margin: 20px 0;
+            padding: 12px;
+            width: 100%;
+            border: 2px solid #00bfff;
+            border-radius: 15px;
+            font-size: 16px;
+            color: #004080;
+            background-color: #f0faff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .icon-input:focus {
+            outline: none;
+            box-shadow: 0 4px 20px rgba(0, 191, 255, 0.4);
+        }
+
+        .generate-btn {
+            padding: 12px 20px;
+            background-color: #004080;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+
+        .generate-btn:hover {
+            background-color: #00bfff;
+            box-shadow: 0 8px 20px rgba(0, 191, 255, 0.5);
+        }
+
+        .icon-display {
+            margin-top: 20px;
+            font-size: 100px;
+            color: #007acc;
+            animation: iconPulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes iconPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); color: #00bfff; }
+        }
+
+        .download-btn {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            display: none;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-btn:hover {
+            background-color: #00bfff;
+            box-shadow: 0 8px 20px rgba(0, 191, 255, 0.5);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="icon-generator-container">
+    <h2>Icon Generator</h2>
+    <p>Enter FontAwesome icon class here</p>
+    <input type="text" id="icon-input" class="icon-input" placeholder="Type icon class here..." />
+    <button id="generate-btn" class="generate-btn">Generate Icon</button>
+    
+   
+    <div id="icon-display" class="icon-display"></div>
+    
+ 
+    <button id="download-btn" class="download-btn">Download Icon</button>
+</div>
+
+<script>
+    document.getElementById('generate-btn').addEventListener('click', function() {
+        const iconInput = document.getElementById('icon-input').value.trim();
+        const iconDisplay = document.getElementById('icon-display');
+        const downloadBtn = document.getElementById('download-btn');
+
+       
+        iconDisplay.innerHTML = '';
+
+        
+        if(iconInput !== '') {
+           
+            let iconClass = iconInput;
+            if (!iconClass.startsWith('fas') && !iconClass.startsWith('far') && !iconClass.startsWith('fab')) {
+                iconClass = `fas ${iconClass}`; 
+            }
+
+            
+            iconDisplay.innerHTML = `<i class="${iconClass}"></i>`;
+            
+            
+            downloadBtn.style.display = 'block';
+        } else {
+            alert('Please enter an icon class!');
+            downloadBtn.style.display = 'none'; 
+        }
+    });
+
+    document.getElementById('download-btn').addEventListener('click', function() {
+        alert('Download feature can be implemented here.');
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
